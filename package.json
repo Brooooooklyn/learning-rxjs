@@ -1,0 +1,36 @@
+{
+  "name": "rxjs-todomvc",
+  "version": "0.1.0",
+  "description": "TODO-MVC implement by RxJS",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --inline --colors --progress --display-error-details --display-cached --port 3000  --content-base src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "RxJS",
+    "Todo"
+  ],
+  "author": "lynweklm@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1",
+    "rxjs": "^5.0.0-rc.1"
+  },
+  "devDependencies": {
+    "@types/jquery": "^2.0.33",
+    "@types/node": "^6.0.46",
+    "css-loader": "^0.25.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.24.0",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.13.1",
+    "to-string-loader": "^1.1.5",
+    "ts-loader": "^0.9.5",
+    "typescript": "^2.0.6",
+    "webpack": "^1.13.3",
+    "webpack-merge": "^0.15.0"
+  }
+}

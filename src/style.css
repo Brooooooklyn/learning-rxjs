@@ -1,0 +1,12 @@
+.list-group {
+  margin-top: 20px;
+  user-select: none;
+}
+.done {
+  text-decoration: line-through;
+}
+.button-remove {
+  position: absolute;
+  right: 5px;
+  bottom: 3px;
+}
