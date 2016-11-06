@@ -7,6 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpackConfig = {
   entry: {
     'main': './src/main.ts',
+    'vendor': ['jquery', 'bootstrap', 'rxjs']
   },
 
   output: {
@@ -15,12 +16,13 @@ const webpackConfig = {
 
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(true),
+    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
     new ExtractTextPlugin('style.css'),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: `src/index.html`,
+      template: 'src/index.html',
       inject: true
     }),
     new webpack.ProvidePlugin({
@@ -32,7 +34,7 @@ const webpackConfig = {
     loaders: [
       // .ts files for TypeScript
       { test: /\.ts$/, loader: 'ts' },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
+      { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') },
       { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file-loader' },
       { test: /\.html$/, loader: 'raw-loader' }
     ]
@@ -46,8 +48,7 @@ const defaultConfig = {
   cache: true,
   debug: true,
   output: {
-    filename: '[name].js',
-    sourceMapFilename: '[name].map'
+    filename: '[name].js'
   },
 
   resolve: {
