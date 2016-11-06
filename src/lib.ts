@@ -1,66 +1,98 @@
-import { observableToBeFn } from 'rxjs/testing/TestScheduler';
-import { setTimeout } from 'timers';
 import { Observable, Observer } from 'rxjs'
-import { retry } from 'rxjs/operator/retry';
-let dbIndex = 0
-const searchStorage = new Map<number, string>()
 
-export interface PostResponse {
+let dbIndex = 0
+const searchStorage = new Map<number, HttpResponse>()
+
+export interface HttpResponse {
   _id: number
   value: string
+  isDone: boolean
 }
 
 const random = (begin: number, end: number) => {
   return begin + Math.floor((end - begin) * Math.random()) + 1
 }
 
-export const search = (inputValue: string): Observable<string | null> => {
-  return Observable.create((observer: Observer<string | null>) => {
+export const search = (inputValue: string): Observable<HttpResponse | null> => {
+  return Observable.create((observer: Observer<HttpResponse | null>) => {
+    let status = 'pending'
     const timmer = setTimeout(() => {
-      let result: string = null
-      for (let [key, value] of searchStorage) {
-        if (value.indexOf(inputValue) !== -1) {
-          result = value
+      let result: HttpResponse = null
+      for (let [key, data] of searchStorage) {
+        if (data.value === inputValue) {
+          result = data
           break
         }
       }
+      status = 'done'
       observer.next(result)
       observer.complete()
-    }, random(10, 700))
+    }, random(400, 1200))
     return () => {
       clearTimeout(timmer)
-      console.warn('search canceled')
+      if (status === 'pending') {
+        console.warn('search canceled')
+      }
     }
   })
 }
 
-export const mockHttpPost = (value: string): Observable<PostResponse> => {
-  return Observable.create((observer: Observer<PostResponse>) => {
+export const mockHttpPost = (value: string): Observable<HttpResponse> => {
+  return Observable.create((observer: Observer<HttpResponse>) => {
+    let status = 'pending'
     const timmer = setTimeout(() => {
       const result = {
-        _id: ++dbIndex, value
+        _id: ++dbIndex, value,
+        isDone: false
       }
-      searchStorage.set(result._id, result.value)
+      searchStorage.set(result._id, result)
+      status = 'done'
       observer.next(result)
       observer.complete()
     }, random(10, 1000))
     return () => {
       clearTimeout(timmer)
-      console.warn('post canceled')
+      if (status === 'pending') {
+        console.warn('post canceled')
+      }
+    }
+  })
+}
+
+export const mockToggle = (id: string, isDone: boolean): Observable<HttpResponse> => {
+  return Observable.create((observer: Observer<HttpResponse>) => {
+    let status = 'pending'
+    const timmer = setTimeout(() => {
+      const result = searchStorage.get(parseInt(id))
+      result.isDone = isDone
+      searchStorage.set(result._id, result)
+      status = 'done'
+      observer.next(result)
+      observer.complete()
+    }, random(10, 1000))
+    return () => {
+      clearTimeout(timmer)
+      if (status === 'pending') {
+        console.warn('post canceled')
+      }
     }
   })
 }
 
 export const mockDelete = (id: number): Observable<boolean> => {
   return Observable.create((observer: Observer<boolean>) => {
+    let status = 'pending'
     const timmer = setTimeout(() => {
       searchStorage.delete(id)
+      status = 'done'
       observer.next(true)
       observer.complete()
     }, random(10, 1000))
     return () => {
       clearTimeout(timmer)
-      console.warn('post canceled')
+      if (status === 'pending') {
+        console.warn('delete canceled')
+      }
     }
   })
 }
