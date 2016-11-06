@@ -97,11 +97,12 @@ export const mockDelete = (id: number): Observable<boolean> => {
   })
 }
 
-export const createTodoItem = (val: string) => {
+export const createTodoItem = (data: HttpResponse) => {
   const result = <HTMLLIElement>document.createElement('LI')
-  result.classList.add('list-group-item')
+  result.classList.add('list-group-item', `todo-item-${data._id}`)
+  result.setAttribute('data-id', `${data._id}`)
   const innerHTML = `
-    ${val}
+    ${data.value}
     <button type="button" class="btn btn-default button-remove pull-right" aria-label="right Align">
       <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
     </button>
