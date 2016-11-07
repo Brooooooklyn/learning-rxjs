@@ -19,6 +19,7 @@
     "rxjs": "^5.0.0-rc.1"
   },
   "devDependencies": {
+    "@types/chai": "^3.4.34",
     "@types/jquery": "^2.0.33",
     "@types/node": "^6.0.46",
     "css-loader": "^0.25.0",
