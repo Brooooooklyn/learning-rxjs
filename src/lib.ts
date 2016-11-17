@@ -64,7 +64,7 @@ export const mockToggle = (id: string, isDone: boolean): Observable<HttpResponse
     let status = 'pending'
     const timmer = setTimeout(() => {
       const result = searchStorage.get(parseInt(id))
-      result.isDone = isDone
+      result.isDone = !isDone
       searchStorage.set(result._id, result)
       status = 'done'
       observer.next(result)
