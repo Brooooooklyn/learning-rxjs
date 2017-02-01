@@ -1,6 +1,6 @@
 import { Observable, Observer } from 'rxjs'
 
-const stream = Observable.create((observer: Observer<number>) => {
+const stream: Observable<number> = Observable.create((observer: Observer<number>) => {
   let i = 0
   const intervalId = setInterval(() => {
     observer.next(++i)
@@ -8,7 +8,7 @@ const stream = Observable.create((observer: Observer<number>) => {
   return () => clearInterval(intervalId)
 })
 
-function createIntervalObservable(base: number) {
+function createIntervalObservable(base: number): Observable<number> {
   let i = 0
   return Observable.create((observer: Observer<string>) => {
     const intervalId = setInterval(() => {

@@ -31,6 +31,14 @@ const webpackConfig = {
   ],
 
   module: {
+    preLoaders: [
+      {
+        test: /\.ts?$/,
+        exclude: /node_modules/,
+        loader: 'tslint'
+      },
+      { test: /\.js$/, loader: 'source-map-loader', include: /rxjs/ }
+    ],
     loaders: [
       // .ts files for TypeScript
       { test: /\.ts$/, loader: 'ts' },

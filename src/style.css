@@ -13,3 +13,11 @@
 .active {
   background: #03a9f4;
 }
+
+.attachment {
+  top: 0;
+}
+
+.progress-bar > span {
+  color: black;
+}
