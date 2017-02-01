@@ -18,7 +18,7 @@ export const search = (inputValue: string): Observable<HttpResponse | null> => {
     let status = 'pending'
     const timmer = setTimeout(() => {
       let result: HttpResponse = null
-      for (let [key, data] of searchStorage) {
+      for (const [key, data] of searchStorage) {
         if (data.value === inputValue) {
           result = data
           break

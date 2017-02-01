@@ -15,7 +15,7 @@ class Router {
 
   constructor() {
     const allowMethod = 'GET,PUT,DELETE,POST,OPTIONS'
-    Router.koaRouter.options('*', async function (ctx: KoaRouter.IRouterContext, next: any) {
+    Router.koaRouter.options('*', async (ctx: KoaRouter.IRouterContext, next: any) => {
       ctx.status = 200
       ctx.res.setHeader('Allow', allowMethod)
       ctx.body = allowMethod
@@ -81,7 +81,7 @@ class Router {
           if (typeof parentPath !== 'undefined') {
             path = parentPath + path
           }
-          Router.koaRouter[method](path, async function (ctx: KoaRouter.IRouterContext, next: any) {
+          Router.koaRouter[method](path, async (ctx: KoaRouter.IRouterContext, next: any) => {
             let result: any
             try {
               result = await desc.value.call(target, ctx, next)

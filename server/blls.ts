@@ -59,7 +59,9 @@ export class Blls {
       rawBody(ctx.req, {
         length: ctx.req.headers['content-length']
       }, (err, body) => {
-        if (err) reject(err)
+        if (err) {
+          reject(err)
+        }
         resolve(body)
       })
     })
@@ -71,7 +73,9 @@ export class Blls {
           fs.mkdirSync(dir)
         }
         fs.writeFile(`${dir}/${fileName}`, raw, (err) => {
-          if (err) reject(err)
+          if (err) {
+            reject(err)
+          }
           resolve()
         })
       })
@@ -114,7 +118,9 @@ export class Blls {
   private writeFileAsPromise(path: string, blob: Buffer) {
     return new Promise((resolve, reject) => {
       fs.writeFile(path, blob, (err) => {
-        if (err) reject(err)
+        if (err) {
+          reject(err)
+        }
         resolve()
       })
     })
@@ -123,7 +129,9 @@ export class Blls {
   private readFileAsPromise(path: string) {
     return new Promise<Buffer>((resolve, reject) => {
       fs.readFile(path, (err, data) => {
-        if (err) reject(err)
+        if (err) {
+          reject(err)
+        }
         resolve(data)
       })
     })
@@ -132,7 +140,9 @@ export class Blls {
   private deleteFileAsPromise(path: string) {
     return new Promise((resolve, reject) => {
       fs.unlink(path, (err) => {
-        if (err) reject(err)
+        if (err) {
+          reject(err)
+        }
         resolve()
       })
     })
