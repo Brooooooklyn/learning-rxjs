@@ -6,6 +6,7 @@ import {
   search,
   HttpResponse
 } from './lib'
+import { FileUploader } from './FileUploader'
 
 const $input = <HTMLInputElement>document.querySelector('.todo-val')
 const $list = <HTMLUListElement>document.querySelector('.list-group')
@@ -87,7 +88,9 @@ const search$ = type$.debounceTime(200)
     }
   })
 
-const app$ = toggle$.merge(remove$, search$)
+const uploader = new FileUploader()
+
+const app$ = toggle$.merge(remove$, search$, uploader.uploadStream$)
   .do(r => {
     console.log(r)
   })
