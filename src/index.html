@@ -10,7 +10,15 @@
       <div class="input-group">
         <input type="text" class="form-control todo-val" placeholder="todo">
         <div class="input-group-btn">
+          <label class="btn btn-default btn-file glyphicon glyphicon-paperclip attachment">
+            <input type="file" style="display: none;">
+          </label>
           <div class="btn btn-default button-add">Add</div>
+        </div>
+      </div>
+      <div class="progress">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+          <span>0%</span>
         </div>
       </div>
       <ul class="list-group"></ul>

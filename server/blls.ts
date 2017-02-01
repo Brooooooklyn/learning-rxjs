@@ -34,7 +34,7 @@ export class Blls {
     Blls.fileKeyPairs.set(fileKey, {
       name: fileName, chunks
     })
-    ctx.body = { chunkSize, chunks, fileKey }
+    ctx.body = { chunkSize, chunks, fileKey, fileSize: parseInt(fileSize) }
     await next()
   }
 
