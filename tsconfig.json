@@ -3,6 +3,9 @@
     "target": "ES6",
     "sourceMap": true,
     "module": "commonjs",
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "outDir": "lib",
     "typeRoots": [
       "node_modules/@types"
     ],
