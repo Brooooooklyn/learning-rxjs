@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CheckerPlugin } = require('awesome-typescript-loader')
 
 // Webpack Config
 const webpackConfig = {
@@ -11,40 +12,61 @@ const webpackConfig = {
   },
 
   output: {
-    path: './dist',
+    filename: '[name].js',
+    path: path.join(__dirname, 'dist'),
+    publicPath: '/'
   },
 
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(true),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+    new CheckerPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),
     new ExtractTextPlugin('style.css'),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'src/index.html',
       inject: true
     }),
     new webpack.ProvidePlugin({
-      jQuery: 'jquery'
+      jQuery: 'jquery',
+      $: 'jquery'
     })
   ],
 
   module: {
-    preLoaders: [
+    loaders: [
       {
         test: /\.ts?$/,
         exclude: /node_modules/,
-        loader: 'tslint'
+        loader: 'tslint-loader',
+        enforce: 'pre',
       },
-      { test: /\.js$/, loader: 'source-map-loader', include: /rxjs/ }
-    ],
-    loaders: [
-      // .ts files for TypeScript
-      { test: /\.ts$/, loader: 'ts' },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') },
-      { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file-loader' },
-      { test: /\.html$/, loader: 'raw-loader' }
+      {
+        test: /\.js$/,
+        loader: 'source-map-loader',
+        include: /rxjs/,
+        enforce: 'pre',
+      },
+      {
+        test: /\.ts$/,
+        use: 'awesome-typescript-loader'
+      },
+      {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: 'css-loader'
+        })
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        use: 'file-loader'
+      },
+      {
+        test: /\.html$/,
+        use: 'raw-loader'
+      }
     ]
   }
 
@@ -54,14 +76,10 @@ const webpackConfig = {
 const defaultConfig = {
   devtool: 'cheap-module-source-map',
   cache: true,
-  debug: true,
-  output: {
-    filename: '[name].js'
-  },
 
   resolve: {
-    root: [ path.join(__dirname, 'src') ],
-    extensions: ['', '.ts', '.js'],
+    modules: [ path.join(__dirname, 'src'), 'node_modules' ],
+    extensions: ['.ts', '.js'],
     alias: {
       'bootstrap': path.join(process.cwd(), 'node_modules/bootstrap/dist/js/npm.js'),
       'bootstrap.min.css': path.join(process.cwd(), 'node_modules/bootstrap/dist/css/bootstrap.min.css')
@@ -74,12 +92,12 @@ const defaultConfig = {
   },
 
   node: {
-    global: 1,
-    crypto: 'empty',
-    module: 0,
-    Buffer: 0,
-    clearImmediate: 0,
-    setImmediate: 0
+    global: true,
+    crypto: false,
+    module: false,
+    Buffer: false,
+    clearImmediate: false,
+    setImmediate: false
   }
 }
 

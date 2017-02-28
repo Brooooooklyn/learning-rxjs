@@ -2,3 +2,4 @@ node_modules
 lib
 chunks
 yarn.lock
+.awcache
