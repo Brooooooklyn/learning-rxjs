@@ -68,7 +68,7 @@ export class FileUploader {
     .filter(action => action.name === 'progress')
     .map(action => action.payload)
     .distinctUntilChanged((x: number, y: number) => x - y >= 0)
-  	.do(r => {
+  	.do((r: number) => {
       const percent = Math.round(r * 100)
       $progressBar.style.width = `${percent}%`
       $progressBar.firstElementChild.textContent = `${percent > 1 ? percent - 1 : percent} %`
@@ -81,17 +81,17 @@ export class FileUploader {
       .post(`${apiHost}/upload/chunk`, i.fileinfo)
       .map((r) => {
         const blobs = this.slice(i.file, r.response.chunks, r.response.chunkSize)
-        return { blobs, chunkMeta: r.response }
+        return { blobs, chunkMeta: r.response, file: i.file}
       })
     )
     .do(() => this.buildPauseIcon())
-    .switchMap(({ blobs, chunkMeta }) => {
+    .switchMap(({ blobs, chunkMeta, file }) => {
       const uploaded: number[] = []
       const dists = blobs.map((blob, index) => {
         let currentLoaded = 0
         return this.uploadChunk(chunkMeta, index, blob)
           .do(r => {
-            currentLoaded = r.loaded / chunkMeta.fileSize
+            currentLoaded = r.loaded / file.size
             uploaded[index] = currentLoaded
             const percent = uploaded.reduce((acc, val) => acc + (val ? val : 0))
             this.action$.next({ name: 'progress', payload: percent })
