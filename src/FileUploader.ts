@@ -81,7 +81,7 @@ export class FileUploader {
       .post(`${apiHost}/upload/chunk`, i.fileinfo)
       .map((r) => {
         const blobs = this.slice(i.file, r.response.chunks, r.response.chunkSize)
-        return { blobs, chunkMeta: r.response, file: i.file}
+        return { blobs, chunkMeta: r.response, file: i.file }
       })
     )
     .do(() => this.buildPauseIcon())
