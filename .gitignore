@@ -3,3 +3,5 @@ lib
 chunks
 yarn.lock
 .awcache
+dist
+
