@@ -11,7 +11,7 @@
     "start": "npm-run-all -p serve dev",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "tsc ./server/index.ts ./server/global.d.ts -m commonjs --outDir lib --target ES2015 --experimentalDecorators --moduleResolution node -w & nodemon lib/index.js",
-    "build": "webpack"
+    "build": "NODE_ENV=production webpack"
   },
   "keywords": [
     "RxJS",

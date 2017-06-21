@@ -72,7 +72,6 @@ const webpackConfig = {
 
 }
 
-// Our Webpack Defaults
 const defaultConfig = {
   devtool: 'cheap-module-source-map',
   cache: true,
