@@ -40,6 +40,9 @@ const webpackConfig = {
         test: /\.ts?$/,
         exclude: /node_modules/,
         loader: 'tslint-loader',
+        options: {
+          typeCheck: true
+        },
         enforce: 'pre',
       },
       {

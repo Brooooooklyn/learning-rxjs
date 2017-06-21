@@ -1,5 +1,5 @@
 {
-  "rulesDirectory": "node_modules/tslint-eslint-rules/dist/rules",
+  "rulesDirectory": ["node_modules/tslint-eslint-rules/dist/rules"],
   "rules": {
     "curly": true,
     "eofline": true,
@@ -16,7 +16,6 @@
     "no-var-keyword": true,
     "no-empty": true,
     "no-unused-expression": true,
-    "no-unused-new": true,
     "no-eval": true,
     "no-use-before-declare": true,
     "no-var-requires": false,
