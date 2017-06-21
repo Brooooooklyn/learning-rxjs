@@ -43,8 +43,7 @@ export class FileUploader {
       return 2
     }, 3)
     .filter(v => v !== 1)
-  	.do((v) => {
-      console.log(v)
+    .do((v) => {
       if (v === 2) {
         this.action$.next({ name: 'pause' })
         $attachment.classList.remove('glyphicon-pause')
