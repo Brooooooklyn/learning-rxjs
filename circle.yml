@@ -15,5 +15,6 @@ test:
   override:
     - yarn lint
     - yarn compile_serve
+    - yarn build
   post:
     - greenkeeper-lockfile-upload
