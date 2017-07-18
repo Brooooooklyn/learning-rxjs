@@ -7,6 +7,7 @@ Learning RxJS step by step
 2. Checkout to seed branch
 3. Implement the Application follow the article
 
+> 使用 yarn 来保证项目可以正常运行
 
 ## Articles
 - [Hello RxJS](https://zhuanlan.zhihu.com/p/23331432)
