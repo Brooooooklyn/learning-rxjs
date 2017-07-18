@@ -52,7 +52,7 @@ class Router {
   }
 
   setRouters(app: Koa): void {
-    Router.routerMap.forEach((_, Router) => new Router())
+    Router.routerMap.forEach((_, RouterClass) => new RouterClass())
 
     Router.routerSet.forEach(Func => Func())
 

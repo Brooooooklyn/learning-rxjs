@@ -1,6 +1,6 @@
 import * as crypto from 'crypto'
 import * as fs from 'fs'
-import * as path from 'path'
+import { join } from 'path'
 import * as rawBody from 'raw-body'
 import Router from './router'
 import { IRouterContext } from 'koa-router'
@@ -68,7 +68,7 @@ export class Blls {
     try {
       await new Promise((resolve, reject) => {
         const fileName = `${fileKey}_${chunk}`
-        const dir = path.join(process.cwd(), `chunks`)
+        const dir = join(process.cwd(), `chunks`)
         if (!fs.existsSync(dir)) {
           fs.mkdirSync(dir)
         }
@@ -91,7 +91,7 @@ export class Blls {
   async settle(ctx: IRouterContext, next: KoaNext) {
     const { fileKey } = ctx.params
     const { name, chunks } = Blls.fileKeyPairs.get(fileKey)
-    const dir = path.join(process.cwd(), `chunks`)
+    const dir = join(process.cwd(), `chunks`)
     const promises: Promise<any>[] = []
     let blob: Buffer
     for (let i = 1; i <= chunks ; i ++) {
