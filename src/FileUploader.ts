@@ -67,11 +67,11 @@ export class FileUploader {
     .filter(action => action.name === 'progress')
     .map(action => action.payload)
     .distinctUntilChanged((x: number, y: number) => x - y >= 0)
-  	.do((r: number) => {
+    .do((r: number) => {
       const percent = Math.round(r * 100)
       $progressBar.style.width = `${percent}%`
       $progressBar.firstElementChild.textContent = `${percent > 1 ? percent - 1 : percent} %`
-  	})
+    })
     .map(r => ({ action: 'PROGRESS', payload: r }))
 
   uploadStream$ = this.file$
