@@ -3,7 +3,6 @@ const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-// Webpack Config
 const webpackConfig = {
   entry: {
     'main': './src/main.ts',
@@ -11,69 +10,87 @@ const webpackConfig = {
   },
 
   output: {
-    path: './dist',
+    path: path.join(process.cwd(), './dist')
   },
-
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(true),
-    new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+    new webpack.optimize.OccurrenceOrderPlugin(true),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'vendor.js'
+    }),
     new ExtractTextPlugin('style.css'),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NodeEnvironmentPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'src/index.html',
-      inject: true
+      inject: true,
     }),
     new webpack.ProvidePlugin({
-      jQuery: 'jquery'
+      '$': 'jquery',
+      jQuery: 'jquery',
     })
   ],
-
   module: {
-    loaders: [
-      // .ts files for TypeScript
-      { test: /\.ts$/, loader: 'ts' },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader') },
-      { test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file-loader' },
-      { test: /\.html$/, loader: 'raw-loader' }
-    ]
+    rules: [
+      {
+        test: /\.ts/,
+        use: 'ts-loader'
+      },
+      {
+        test: /\.css/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use:"css-loader",
+        })
+      },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        use: 'file-loader'
+      },
+      {
+        test: /\.html$/,
+        use: 'raw-loader'
+      }
+    ],
   }
-
 }
 
-// Our Webpack Defaults
 const defaultConfig = {
   devtool: 'cheap-module-source-map',
   cache: true,
-  debug: true,
   output: {
     filename: '[name].js'
   },
-
   resolve: {
-    root: [ path.join(__dirname, 'src') ],
-    extensions: ['', '.ts', '.js'],
+    modules: [path.join(__dirname, 'src'), "node_modules"],
+    extensions: ['.ts', '.js'],
     alias: {
       'bootstrap': path.join(process.cwd(), 'node_modules/bootstrap/dist/js/npm.js'),
       'bootstrap.min.css': path.join(process.cwd(), 'node_modules/bootstrap/dist/css/bootstrap.min.css')
-    }
+    },
   },
-
   devServer: {
     historyApiFallback: true,
-    watchOptions: { aggregateTimeout: 300, poll: 1000 }
+    watchOptions: {aggregateTimeout: 300, poll: 1000 }
   },
-
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      debug: true
+    })
+  ],
   node: {
-    global: 1,
+    global: true,
     crypto: 'empty',
-    module: 0,
-    Buffer: 0,
-    clearImmediate: 0,
-    setImmediate: 0
+    module: false,
+    Buffer: false,
+    clearImmediate: false,
+    setImmediate: false
+  },
+  stats: {
+    errorDetails: true,
+    cached: true,
   }
 }
-
 const webpackMerge = require('webpack-merge')
 module.exports = webpackMerge(defaultConfig, webpackConfig)
