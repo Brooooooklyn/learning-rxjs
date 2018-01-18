@@ -20,7 +20,7 @@
   "author": "lynweklm@gmail.com",
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.0.0",
     "config": "^1.26.1",
     "jquery": "^3.2.1",
     "koa": "^2.3.0",
