@@ -1,14 +1,12 @@
 const webpack = require('webpack')
 const path = require('path')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CheckerPlugin } = require('awesome-typescript-loader')
 
 // Webpack Config
 const webpackConfig = {
   entry: {
-    'main': './src/main.ts',
-    'vendor': ['jquery', 'bootstrap', 'rxjs']
+    'main': './src/main.ts'
   },
 
   output: {
@@ -19,10 +17,7 @@ const webpackConfig = {
 
   plugins: [
     new CheckerPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.js' }),
-    new ExtractTextPlugin('style.css'),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'src/index.html',
@@ -34,8 +29,10 @@ const webpackConfig = {
     })
   ],
 
+  mode: 'development',
+
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.ts?$/,
         exclude: /node_modules/,
@@ -57,10 +54,10 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader'
-        })
+        loaders: [
+          'style-loader',
+          'css-loader',
+        ]
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2)$/,
@@ -83,7 +80,6 @@ const defaultConfig = {
     modules: [ path.join(__dirname, 'src'), 'node_modules' ],
     extensions: ['.ts', '.js'],
     alias: {
-      'bootstrap': path.join(process.cwd(), 'node_modules/bootstrap/dist/js/npm.js'),
       'bootstrap.min.css': path.join(process.cwd(), 'node_modules/bootstrap/dist/css/bootstrap.min.css')
     }
   },
