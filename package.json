@@ -48,7 +48,7 @@
     "npm-run-all": "^4.1.2",
     "raw-loader": "^0.5.1",
     "source-map-loader": "^0.2.3",
-    "style-loader": "^0.21.0",
+    "style-loader": "^0.22.1",
     "to-string-loader": "^1.1.5",
     "tslint": "^5.9.1",
     "tslint-eslint-rules": "^5.1.0",
