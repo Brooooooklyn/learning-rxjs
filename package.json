@@ -35,7 +35,7 @@
   },
   "devDependencies": {
     "@types/jquery": "^3.3.1",
-    "@types/koa": "*",
+    "@types/koa": ">=2.0.48",
     "@types/koa-bodyparser": "^4.2.0",
     "@types/koa-router": "^7.0.27",
     "@types/node": "~9.6.1",
