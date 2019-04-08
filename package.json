@@ -38,7 +38,7 @@
     "@types/koa": "*",
     "@types/koa-bodyparser": "^4.2.0",
     "@types/koa-router": "^7.0.27",
-    "@types/node": "~9.6.1",
+    "@types/node": "~11.13.1",
     "@types/raw-body": "^2.3.0",
     "awesome-typescript-loader": "^4.0.1",
     "css-loader": "^0.28.11",
