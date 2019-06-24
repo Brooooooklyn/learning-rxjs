@@ -34,7 +34,7 @@
     "spark-md5": "^3.0.0"
   },
   "devDependencies": {
-    "@types/jquery": "^3.3.1",
+    "@types/jquery": "^3.3.30",
     "@types/koa": "*",
     "@types/koa-bodyparser": "^4.2.0",
     "@types/koa-router": "^7.0.27",
