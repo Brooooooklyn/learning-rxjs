@@ -37,7 +37,7 @@
     "@types/jquery": "^3.3.1",
     "@types/koa": "*",
     "@types/koa-bodyparser": "^4.2.0",
-    "@types/koa-router": "^7.0.27",
+    "@types/koa-router": "^7.0.42",
     "@types/node": "~9.6.1",
     "@types/raw-body": "^2.3.0",
     "awesome-typescript-loader": "^4.0.1",
