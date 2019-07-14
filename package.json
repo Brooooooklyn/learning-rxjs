@@ -1,5 +1,5 @@
 {
-  "name": "rxjs-todomvc",
+  "name": "learning-rxjs",
   "version": "0.1.0",
   "description": "TODO-MVC implement by RxJS",
   "main": "index.js",
