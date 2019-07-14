@@ -23,10 +23,11 @@ Learning RxJS step by step
 - [用 RxJS 连接世界](https://zhuanlan.zhihu.com/p/23464709)
 - [使用 RxJS 掌控异步](https://zhuanlan.zhihu.com/p/25059824)
 
-## Buy me a coffee
-![](./assets/alipay.JPG)
-
-![](./assets/wechat.JPG)
+## Buy me a cup of coffee
+<p float="left">
+  <img width="200px" src="./assets/alipay.JPG"/>
+  <img width="221px" src="./assets/wechat.JPG"/>
+</p>
 
 ## Contributors
 
