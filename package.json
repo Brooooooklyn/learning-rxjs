@@ -24,7 +24,7 @@
     "config": "^1.30.0",
     "jquery": "^3.3.1",
     "koa": "^2.5.0",
-    "koa-better-body": "^3.0.4",
+    "koa-better-body": "^3.0.5",
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.4.0",
     "os": "^0.1.1",
