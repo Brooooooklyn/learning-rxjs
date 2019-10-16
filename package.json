@@ -28,7 +28,7 @@
     "koa-bodyparser": "^4.2.0",
     "koa-router": "^7.4.0",
     "os": "^0.1.1",
-    "popper.js": "^1.14.1",
+    "popper.js": "^1.16.0",
     "raw-body": "^2.3.2",
     "rxjs": "^5.5.8",
     "spark-md5": "^3.0.0"
