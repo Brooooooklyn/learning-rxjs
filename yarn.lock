@@ -2673,9 +2673,10 @@ form-data@~2.1.1:
     combined-stream "^1.0.5"
     mime-types "^2.1.12"
 
-formidable@^1.0.17:
-  version "1.1.1"
-  resolved "https://registry.npmjs.org/formidable/-/formidable-1.1.1.tgz#96b8886f7c3c3508b932d6bd70c4d3a88f35f1a9"
+formidable@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/formidable/-/formidable-1.2.1.tgz#70fb7ca0290ee6ff961090415f4b3df3d2082659"
+  integrity sha512-Fs9VRguL0gqGHkXS5GQiMCr1VhZBxz0JnJs4JmMp/2jL18Fmbzvv7vOFRU+U8TBkHEE/CX1qDXzJplVULgsLeg==
 
 forwarded@~0.1.2:
   version "0.1.2"
@@ -3844,17 +3845,18 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.2"
   resolved "https://registry.npmjs.org/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
 
-koa-better-body@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.npmjs.org/koa-better-body/-/koa-better-body-3.0.4.tgz#de49f544e4d6e1d9858f6c4880aedf2b8ac88759"
+koa-better-body@^3.1.10:
+  version "3.1.10"
+  resolved "https://registry.yarnpkg.com/koa-better-body/-/koa-better-body-3.1.10.tgz#76504e5757babbf57eca3c81a6fa1375e70bf7ce"
+  integrity sha512-zit8265uQDiZWJSfaV3nAnBR7+kmfXzJZrd3bzmJwaO7xbHFokeCL8UBgnoAICPS7bAmMRXUJf5SKwz6MLeW3A==
   dependencies:
-    extend-shallow "^2.0.1"
-    formidable "^1.0.17"
-    koa-body-parsers "git+https://github.com/tunnckoCore/body-parsers.git"
+    extend-shallow "^3.0.2"
+    formidable "^1.2.1"
+    koa-body-parsers tunnckoCore/body-parsers#patch-1
 
-"koa-body-parsers@git+https://github.com/tunnckoCore/body-parsers.git":
-  version "3.0.0"
-  resolved "git+https://github.com/tunnckoCore/body-parsers.git#b515504ef0bfe3e04aa3dd13502d3d90c2d60956"
+"koa-body-parsers@github:tunnckoCore/body-parsers#patch-1":
+  version "3.1.0"
+  resolved "https://codeload.github.com/tunnckoCore/body-parsers/tar.gz/7788b9cf82d84f90bbd543f8753affb82baf3a96"
   dependencies:
     raw-body "^2.1.0"
 
@@ -6443,9 +6445,10 @@ strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
-style-loader@^0.20.3:
-  version "0.20.3"
-  resolved "https://registry.npmjs.org/style-loader/-/style-loader-0.20.3.tgz#ebef06b89dec491bcb1fdb3452e913a6fd1c10c4"
+style-loader@^0.21.0:
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/style-loader/-/style-loader-0.21.0.tgz#68c52e5eb2afc9ca92b6274be277ee59aea3a852"
+  integrity sha512-T+UNsAcl3Yg+BsPKs1vd22Fr8sVT+CJMtzqc6LEw9bbJZb43lm9GoeIfUcDEefBSWC0BhYbcdupV1GtI4DGzxg==
   dependencies:
     loader-utils "^1.1.0"
     schema-utils "^0.4.5"
